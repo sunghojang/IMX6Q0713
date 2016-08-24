@@ -1,0 +1,1 @@
+cmd_drivers/clocksource/built-in.o :=  arm-poky-linux-gnueabi-ld -EL    -r -o drivers/clocksource/built-in.o drivers/clocksource/clksrc-of.o drivers/clocksource/mmio.o drivers/clocksource/vf_pit_timer.o 

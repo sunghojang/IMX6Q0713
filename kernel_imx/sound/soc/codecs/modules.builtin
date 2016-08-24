@@ -1,0 +1,5 @@
+kernel/sound/soc/codecs/snd-soc-si476x.ko
+kernel/sound/soc/codecs/snd-soc-spdif-rx.ko
+kernel/sound/soc/codecs/snd-soc-spdif-tx.ko
+kernel/sound/soc/codecs/snd-soc-tlv320aic23.ko
+kernel/sound/soc/codecs/snd-soc-wm8960.ko

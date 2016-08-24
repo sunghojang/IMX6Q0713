@@ -1,0 +1,1 @@
+cmd_sound/soc/codecs/built-in.o :=  arm-poky-linux-gnueabi-ld -EL    -r -o sound/soc/codecs/built-in.o sound/soc/codecs/snd-soc-si476x.o sound/soc/codecs/snd-soc-spdif-rx.o sound/soc/codecs/snd-soc-spdif-tx.o sound/soc/codecs/snd-soc-tlv320aic23.o sound/soc/codecs/snd-soc-wm8960.o 

@@ -1,0 +1,1 @@
+cmd_drivers/input/touchscreen/built-in.o :=  arm-poky-linux-gnueabi-ld -EL    -r -o drivers/input/touchscreen/built-in.o drivers/input/touchscreen/tsc2007.o drivers/input/touchscreen/ft6x06_ts.o drivers/input/touchscreen/ft6x06_ex_fun.o drivers/input/touchscreen/focaltech_ctl.o 

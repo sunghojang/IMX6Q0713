@@ -1,0 +1,72 @@
+#!/bin/sh
+
+export ARCH=arm
+export CROSS_COMPILE=arm-poky-linux-gnueabi-
+export PATH=/opt/poky/1.5.1/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/:$PATH
+#install ubuntu 16.04 amd64
+#KERNEL_IMAGE=uImage
+KERNEL_IMAGE=zImage
+
+# Default kernel configurations
+KERNEL_CONFIG=$2
+
+INSTALL_BINDIR=../image
+export LOADADDR=0x10008000
+DTB_FILENAME=imx6q-sabresd.dtb
+ 
+#{
+CPU_JOB_NUM=$(grep processor /proc/cpuinfo | awk '{field=$NF};END{print field+2}')
+START_TIME=`date +%s`
+#sudo apt-get install libncurses5-dev
+case "$1" in
+clean)
+    echo make -j$CPU_JOB_NUM mrproper
+	cp .config arch/arm/configs/$KERNEL_CONFIG
+	cp .config config.sav
+    make -j$CPU_JOB_NUM mrproper
+    ;;
+config)
+	sudo apt-get install libncurses5-dev
+    echo make -j$CPU_JOB_NUM menuconfig
+    make -j$CPU_JOB_NUM menuconfig
+    ;;
+defconfig)
+    if [ "$2" ] ; then
+        KERNEL_CONFIG=$2
+    fi
+    echo make -j$CPU_JOB_NUM $KERNEL_CONFIG
+    make -j$CPU_JOB_NUM $KERNEL_CONFIG
+    ;;
+modules)
+    make -j$CPU_JOB_NUM modules
+    ;;
+all|*)
+    echo make -j$CPU_JOB_NUM uImage
+    make -j$CPU_JOB_NUM uImage
+    make -j$CPU_JOB_NUM modules
+    #echo -------------------------------------------------------------------
+#    make dtbs
+    make $DTB_FILENAME
+    if [ $? != 0 ] ; then
+	    exit 1
+    fi
+    if [ "$2" ] ; then
+        INSTALL_BINDIR=$2
+    fi
+    if [ $INSTALL_BINDIR ] ; then
+        echo cp -a arch/arm/boot/$KERNEL_IMAGE $INSTALL_BINDIR/$KERNEL_IMAGE
+        cp -a arch/arm/boot/$KERNEL_IMAGE $INSTALL_BINDIR/$KERNEL_IMAGE
+        echo cp -a arch/arm/boot/dts/$DTB_FILENAME $INSTALL_BINDIR/$DTB_FILENAME
+        cp -a arch/arm/boot/dts/$DTB_FILENAME $INSTALL_BINDIR/$DTB_FILENAME
+    fi
+    if [ $INSTALL_BINDIR2 ] ; then
+        echo cp -a arch/arm/boot/$KERNEL_IMAGE $INSTALL_BINDIR2/$KERNEL_IMAGE
+        cp -a arch/arm/boot/$KERNEL_IMAGE $INSTALL_BINDIR2/$KERNEL_IMAGE
+    fi
+
+    ;;
+esac
+
+END_TIME=`date +%s`
+echo "Total compile time is $((($END_TIME-$START_TIME)/60)) minutes $((($END_TIME-$START_TIME)%60)) seconds"
+#} 2>&1 |tee b.out

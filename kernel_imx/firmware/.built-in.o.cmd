@@ -1,0 +1,1 @@
+cmd_firmware/built-in.o :=  arm-poky-linux-gnueabi-ld -EL    -r -o firmware/built-in.o firmware/mrvl/sd8787_uapsta.bin.gen.o firmware/imx/sdma/sdma-imx6q.bin.gen.o firmware/imx/epdc_E60_V110.fw.gen.o firmware/imx/epdc_E60_V220.fw.gen.o firmware/imx/epdc_E97_V110.fw.gen.o firmware/imx/epdc_E060SCM.fw.gen.o 

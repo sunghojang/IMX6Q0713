@@ -1,0 +1,2 @@
+kernel/drivers/bluetooth/btmrvl.ko
+kernel/drivers/bluetooth/btmrvl_sdio.ko

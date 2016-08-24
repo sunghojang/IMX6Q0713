@@ -1,0 +1,1 @@
+cmd_drivers/media/platform/mxc/capture/s5k4ecgx_camera_mipi.o := arm-poky-linux-gnueabi-ld -EL    -r -o drivers/media/platform/mxc/capture/s5k4ecgx_camera_mipi.o drivers/media/platform/mxc/capture/s5k4ecgx_mipi.o 

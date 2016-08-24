@@ -1,0 +1,11 @@
+kernel/sound/soc/fsl/snd-soc-fsl-sai.ko
+kernel/sound/soc/fsl/snd-soc-fsl-ssi.ko
+kernel/sound/soc/fsl/snd-soc-fsl-asrc-pcm.ko
+kernel/sound/soc/fsl/snd-soc-fsl-asrc.ko
+kernel/sound/soc/fsl/snd-soc-fsl-spdif.ko
+kernel/sound/soc/fsl/snd-soc-fsl-utils.ko
+kernel/sound/soc/fsl/snd-soc-imx-ssi.ko
+kernel/sound/soc/fsl/snd-soc-imx-audmux.ko
+kernel/sound/soc/fsl/snd-soc-eukrea-tlv320.ko
+kernel/sound/soc/fsl/snd-soc-imx-wm8960.ko
+kernel/sound/soc/fsl/snd-soc-imx-spdif.ko

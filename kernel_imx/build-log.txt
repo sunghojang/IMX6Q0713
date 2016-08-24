@@ -1,0 +1,11 @@
+make: ../../../prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin/arm-eabi-gcc: 명령을 찾지 못했음
+  CHK     include/generated/uapi/linux/version.h
+  CHK     include/generated/utsrelease.h
+make[1]: `include/generated/mach-types.h'는 이미 갱신되었습니다.
+  CC      kernel/bounds.s
+/bin/sh: 1: ../../../prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin/arm-eabi-gcc: not found
+make[1]: *** [kernel/bounds.s] 오류 127
+make: *** [prepare0] 오류 2
+
+#### make failed to build some targets (3 seconds) ####
+
