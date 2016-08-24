@@ -1,0 +1,25 @@
+ 17
+down vote
+accepted
+	
+
+I've looked at the toolkit you linked, just to read the following in the readme.txt:
+
+    This toolchain is built and optimized for Cortex-R/M bare metal development.
+
+In other words, this toolchain is specifically configured for embedded systems, perhaps with no operating system running at all. In such case, there's no system to provide e.g. standard output where printf() is supposed to write, there's no file system, etc. - you have to link against some library providing these basic services, if you want to use them.
+
+That said, your toolkit provides librdimon.a library which provides all those basic services. This library is actually a part of libgloss compilation. If you want to link against it, try the following command:
+
+arm-none-eabi-gcc --specs=rdimon.specs   -Wl,--start-group -lgcc -lc -lm -lrdimon -Wl,--end-group -o test test.c
+
+This links fine on my PC, but whether it's what you really want is another story (where do you expect to see printf() output, anyway?).
+
+For you chip you should probably look for a library which redirects the standard output to serial port or provides debug output over JTAG. Alternatively, you can use your custom function e.g. sending debug output to serial console instead of printf() - it's up to you. If you decide on using printf() I suggest reading libgloss documentation.
+
+Also, I suggest looking around for a toolchain which is specifically bundled for STM32 family. Properly configuring all this basic stuff (C library, linker script, etc.) requires a bit of experience.
+
+Edit: Many embedded systems doesn't really use standard C library, starting pretty much from scratch. If you want to go this way, you should pass -nostdlib to your gcc invocation. Of course, you'll no longer have things like printf() available.
+
+Edit 2: Another way is to use standard library (newlib, I mean) without libgloss and provide appropriate stubs for things you do not need. You might want to follow this tutorial, where _read and _write is implemented over the serial port, and everything else is stubbed. This is most likely what you really want.
+

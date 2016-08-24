@@ -1,0 +1,8 @@
+KDIR	=	/root/IMX6Q/kernel_imx
+SUBDIR  = 	/root/IMX6Q/kernel_imx/drivers/gpio/testapp
+
+all:
+	arm-none-eabi-gcc --specs=rdimon.specs -Wl,--start-group -lgcc -lc -lm -lrdimon -Wl,--end-group -o testapp test.c 	
+
+clean:
+	rm testapp
